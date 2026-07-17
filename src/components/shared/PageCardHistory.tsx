@@ -52,7 +52,7 @@ export default function PageCardHistory({goalTitle, actualDate, goalCost, months
                <Divider orientation="vertical" spacing={5} className="order-2 lg:order-1" />
                <Button variant="ghost" icon={Trash} onClick={onDelete} className="text-red-600 order-1 lg:order-2"/>
                <Button variant="secondary" icon={ExternalLink} onClick={onViewDetails} className="order-3">Ver detalhes</Button>
-            </div>
+            </div> 
         </div>
     )
 }

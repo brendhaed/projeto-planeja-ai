@@ -7,7 +7,7 @@ export function SimulationHero() {
         <h1 className="text-foreground text-3xl font-semibold sm:text-4xl">
           Vamos planejar seu futuro
         </h1>
-        <img
+        <img 
           src={PiggyBankImage}
           alt=""
           aria-hidden="true"

@@ -5,7 +5,7 @@ import {
   Goal,
   Landmark,
   PiggyBank,
-  Wallet,
+  Wallet, 
 } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import { AIInsightsCard } from '../components/features/SimulationResults/AIInsightCardProps'
@@ -21,30 +21,38 @@ export function SimulationResultsPage() {
 
   // salvar automaticamente no Histórico
   useEffect(() => {
-    if (data) {
-      // Busca o histórico atual salvo no localStorage (ou cria um array vazio)
-      const currentHistory = JSON.parse(localStorage.getItem('planejai_history') || '[]')
+  if (data) {
+    const currentHistory = JSON.parse(localStorage.getItem('planejai_history') || '[]')
 
-      // Evita duplicar a mesma simulação se o usuário atualizar a página
-      const alreadySaved = currentHistory.some((item: any) => item.id === data.id)
+    const alreadySaved = currentHistory.some((item: any) => item.id === data.id)
 
-      if (!alreadySaved) {
-        // Mapeia os dados do formulário para o formato exato que o seu 'CardHistory' precisa
-        const historyItem = {
-          id: data.id,
-          goalTitle: data.goalName,
-          actualDate: new Date().toISOString(),
-          goalCost: Number(data.goalAmount),
-          months: Number(data.goalDeadline),
-          economyInMonths: calcMonthlySavings(data), 
-        }
+    if (!alreadySaved) {
+      // Função segura para limpar textos de moedas e converter para número puro
+      const extrairNumero = (valor: any): number => {
+        if (typeof valor === 'number') return valor;
+        if (!valor) return 0;
+        
+        // Remove tudo o que não for número, vírgula ou ponto
+        const apenasNumeros = String(valor).replace(/[^0-9,-]/g, '').replace(',', '.');
+        return Number(apenasNumeros) || 0;
+      };
 
-        // Adiciona a nova simulação no início da lista do histórico
-        const updatedHistory = [historyItem, ...currentHistory]
-        localStorage.setItem('planejai_history', JSON.stringify(updatedHistory))
+      const valorMeta = data.goalAmount || data.goalCost || data.cost || data.amount || 0;
+
+      const historyItem = {
+        id: data.id,
+        goalTitle: data.goalName,
+        actualDate: new Date().toISOString(),
+        goalCost: extrairNumero(valorMeta), 
+        months: Number(data.goalDeadline || data.months || 0),
+        economyInMonths: calcMonthlySavings(data),
       }
+
+      const updatedHistory = [historyItem, ...currentHistory]
+      localStorage.setItem('planejai_history', JSON.stringify(updatedHistory))
     }
-  }, [data]) 
+  }
+}, [data])
   if (!data) {
     return <p>Simulação não encontrada.</p>
   }

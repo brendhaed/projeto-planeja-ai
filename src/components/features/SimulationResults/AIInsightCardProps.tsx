@@ -1,12 +1,12 @@
 import 'react-loading-skeleton/dist/skeleton.css'
-
 import Skeleton from 'react-loading-skeleton'
 import { useInsight } from '../../../hooks/useInsight'
 import { Content } from '../Insights/Content'
 import { Error } from '../Insights/Error'
+import { InsightChat } from './InsightChat'
 
 interface AIInsightCardProps {
-  simulationId: string
+  simulationId: string 
 }
 
 export function AIInsightsCard({ simulationId }: AIInsightCardProps) {
@@ -44,6 +44,9 @@ export function AIInsightsCard({ simulationId }: AIInsightCardProps) {
         />
       )}
       {!isLoading && insight && !error && <Content insight={insight} />}
+
+    {/* Chat de conversa */}
+      <InsightChat simulationId={simulationId} />
     </div>
   )
 }

@@ -9,8 +9,8 @@ interface HistoryItem {
     goalCost:number;
     months:number;
     economyInMonths:number;
-}
-
+} 
+ 
 export function SimulationHistoryPage(){
     const [historyList, setHistoryList] = useState<HistoryItem[]>([]);
     const navigate = useNavigate();
@@ -46,15 +46,13 @@ export function SimulationHistoryPage(){
             <div key={simulation.id} className="relative group">
               <CardHistory
                 goalTitle={simulation.goalTitle}
-                // Convertemos a string de data de volta para um objeto Date
                 actualDate={new Date(simulation.actualDate)}
                 goalCost={simulation.goalCost}
                 months={simulation.months}
                 economyInMonths={simulation.economyInMonths}
                 onDelete={() => handleDeleteItem(simulation.id)}
-                onViewDetails={() => navigate(`/resultados?id=${simulation.id}`)}
+                onViewDetails={() => navigate(`/resultado/${simulation.id}`)}
               />
-              
             </div>
           ))
         )}

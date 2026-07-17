@@ -1,5 +1,4 @@
 import type { PropsWithChildren } from 'react'
-
 import type { InsightData } from '../../../services/aiService'
 
 interface ContentProps {
@@ -20,7 +19,11 @@ function SectionTitle({ children }: PropsWithChildren) {
   )
 }
 
-function OrderedList({ items }: { items: string[] }) {
+function OrderedList({ items = [] }: { items?: string[] }) {
+  if (!items || items.length === 0) {
+    return <p className="text-muted-foreground ml-6 text-sm italic">Nenhuma sugestão disponível.</p>
+  }
+
   return (
     <ol className="text-muted-foreground ml-6 list-decimal text-sm leading-relaxed">
       {items.map((item, index) => (
@@ -36,7 +39,7 @@ const statusStyles = {
   viable: {
     label: 'Meta viável no prazo',
     className:
-      'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+      'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-200',
   },
   needs_adjustment: {
     label: 'Ajuste necessário',
@@ -50,7 +53,8 @@ const statusStyles = {
 }
 
 export function Content({ insight }: ContentProps) {
-  const status = statusStyles[insight.feasibility.status] ?? null
+  // encadeamento opcional para evitar erros caso feasibility seja undefined
+  const status = statusStyles[insight?.feasibility?.status] ?? null
 
   return (
     <div className="lg:scrollbar-thin lg:max-h-93 lg:overflow-y-auto lg:pr-2 lg:[scrollbar-color:var(--border)_transparent]">
@@ -67,32 +71,32 @@ export function Content({ insight }: ContentProps) {
             </span>
           )}
         </div>
-        <Paragraph>{insight.feasibility.content}</Paragraph>
+        <Paragraph>{insight?.feasibility?.content}</Paragraph>
       </section>
 
       <section>
         <SectionTitle>💰 Diagnóstico Financeiro</SectionTitle>
-        <Paragraph>{insight.diagnosis.content}</Paragraph>
+        <Paragraph>{insight?.diagnosis?.content}</Paragraph>
       </section>
 
       <section>
         <SectionTitle>📋 Sugestões Práticas</SectionTitle>
-        <OrderedList items={insight.suggestions.items} />
+        <OrderedList items={insight?.suggestions?.items} />
       </section>
 
       <section>
         <SectionTitle>💡 Como Aumentar sua Renda</SectionTitle>
-        <OrderedList items={insight.extraIncome.items} />
+        <OrderedList items={insight?.extraIncome?.items} />
       </section>
 
       <section>
-        <SectionTitle>🏦 Sugestões de Investimento</SectionTitle>
-        <OrderedList items={insight.investment.items} />
+        <SectionTitle>🐷 Dicas para Guardar Dinheiro</SectionTitle>
+        <OrderedList items={insight?.saveMoney?.items} />
       </section>
 
       <section>
         <SectionTitle>🚀 Mensagem Final</SectionTitle>
-        <Paragraph>{insight.motivation.content}</Paragraph>
+        <Paragraph>{insight?.motivation?.content}</Paragraph>
       </section>
     </div>
   )
