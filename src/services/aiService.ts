@@ -60,10 +60,10 @@ export const getInsight = async (prompt: string) => {
   const json = response.candidates[0].content.parts[0].text
   return JSON.parse(json) as InsightData 
 }
-
+ 
 //  Envia o histórico completo das mensagens para o Gemini manter o contexto do diálogo
 export const chat = async ({ 
-  simulationId, 
+  simulationId: _simulationId, 
   history 
 }: { 
   simulationId: string; 

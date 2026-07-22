@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Send, RotateCcw } from "lucide-react"; // Importamos o ícone de recarregar
+import { Send, RotateCcw } from "lucide-react"; 
 import { aiService } from "../../../services/aiService";
 
 interface Message {
