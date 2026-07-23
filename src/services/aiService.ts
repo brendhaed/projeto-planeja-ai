@@ -82,7 +82,7 @@ export const chat = async ({
 
   const formattedContents = [
     {
-      role: 'user',
+      role: 'user', 
       parts: [{ text: systemPrompt }]
     },
     ...history.map((msg) => ({
