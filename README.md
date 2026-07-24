@@ -2,7 +2,7 @@
 Um assistente financeiro inteligente desenvolvido para ajudar estudantes do ensino médio, jovens aprendizes e estagiários a organizarem seu dinheiro de forma simples, descontraída e acessível.
 
 ## 🎯Sobre o projeto:
-O Planeja AI resolve os problemas dos jovem ao administrar a mesada ou o primeiro salário de estágio/jovem aprendiz, oferecendo diagnósticos financeiros claros, sugestões práticas e métricas de viabilidade, além de permitir uma conversa interativa com um mentor financeiro virtual via Inteligência Artificial (Google Gemini).
+O Planeja AI resolve os problemas dos jovens ao administrar a mesada ou o primeiro salário de estágio/jovem aprendiz, oferecendo diagnósticos financeiros claros, sugestões práticas e métricas de viabilidade, além de permitir uma conversa interativa com um mentor financeiro virtual via Inteligência Artificial (Google Gemini).
 
 ## 🛠️ Tecnologias Utilizadas:
 * **Front-end:** [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)

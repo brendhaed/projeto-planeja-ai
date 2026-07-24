@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 import { useState, useEffect, useRef } from "react";
 import { Send, RotateCcw } from "lucide-react"; 
 import { aiService } from "../../../services/aiService";
@@ -42,7 +43,7 @@ export function InsightChat({ simulationId }: InsightChatProps) {
       setLastUserQuestion("");
     }
   }, [simulationId]);
-
+ 
   // Scroll automático para a mensagem mais recente
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -139,7 +140,9 @@ export function InsightChat({ simulationId }: InsightChatProps) {
                       : "bg-muted text-foreground rounded-tl-none"
                   } ${isErrorMessage ? "border border-red-500/30 bg-red-500/5" : ""}`}
                 >
-                  <p className="whitespace-pre-line text-sm md:text-sm">{msg.text}</p>
+                  <div className="whitespace-pre-line text-sm md:text-sm">
+                    <ReactMarkdown>{msg.text}</ReactMarkdown>
+                  </div>
                 </div>
 
                 {/* Ícone de tentar novamente (só aparece na última mensagem se for o balão de erro) */}

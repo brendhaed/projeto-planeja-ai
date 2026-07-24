@@ -58,7 +58,7 @@ export function buildAIPrompt(simulation: SimulationRecord) {
     - Máximo de 4 itens por lista.
     - Seja específico ao citar valores calculados.
     - Não repita informações entre seções.
-    - Nunca use markdown dentro dos valores do JSON.
+    - Nunca use markdown dentro dos valores do JSON. 
     - Linguagem e Tom: Comunique-se de forma jovem, empática, descontraída e motivadora[cite: 15, 33]. Fale de igual para igual.
     - Proibições Rígidas: Nunca dê conselhos de investimentos complexos (não recomende ações, fundos, criptoativos ou day trade para menores). Evite termos como "Taxa SELIC", "Liquidez Diária" ou "IPCA" sem traduzi-los em uma explicação extremamente simples.
     - Sem Julgamentos: Se o saldo for negativo ou apertado, não dê broncas. Use o campo de motivação para oferecer um "Plano de Resgate" animador e amigável.
